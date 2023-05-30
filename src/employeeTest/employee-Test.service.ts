@@ -150,6 +150,11 @@ export class EmployeeTestService {
               count: '$count',
             },
         },
+        {
+          $sort: {
+            count: -1,
+          },
+        },
       ],
     });
     return skillWithEmployeeCount as unknown as Skill[];
@@ -245,6 +250,11 @@ export class EmployeeTestService {
               Name: '$_id.TagId.Name',
               count: '$count',
             },
+        },
+        {
+          $sort: {
+            count: -1,
+          },
         },
       ],
     });
