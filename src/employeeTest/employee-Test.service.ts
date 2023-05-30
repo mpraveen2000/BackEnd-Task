@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma';
 import { EmployeeTestDto } from './employee-Test.dto';
 import { EmployeeTest, Prisma } from '@prisma/client';
 import { filter } from 'rxjs';
-import { Skill } from 'src/skills-Test/skills-test.model';
-import { Tag } from 'src/Tag/tag.model';
+import { Tag } from '../Tag/tag.model';
+import { Skill } from '../skills-Test/skills-test.model';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class EmployeeTestService {

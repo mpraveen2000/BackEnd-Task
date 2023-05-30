@@ -10,8 +10,8 @@ import {
 import { EmployeeTest } from './employee-Test.model';
 import { EmployeeTestService } from './employee-Test.service';
 import { EmployeeTestDto, FilterBySkill } from './employee-Test.dto';
-import { Skill } from 'src/skills-Test/skills-test.model';
-import { Tag } from 'src/Tag/tag.model';
+import { Tag } from '../Tag/tag.model';
+import { Skill } from '../skills-Test/skills-test.model';
 
 @Resolver(() => EmployeeTest)
 export class EmployeeTestResolver {
