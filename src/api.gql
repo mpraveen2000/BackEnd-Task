@@ -1,0 +1,101 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type EmployeeTest {
+  Email: String
+  Name: String
+  Phone: String
+  age: Float
+  dob: DateTime
+  doj: DateTime
+  id: String!
+  skills: [Skill!]
+}
+
+input EmployeeTestDto {
+  Email: String
+  Name: String
+  Phone: String
+  dob: DateTime
+  doj: DateTime
+  skillsTestId: [String!]
+}
+
+input FilterBySkill {
+  skillId: String
+}
+
+type Mutation {
+  createEmployeePrisma(createRahul: RahulDetailDto!): Rahul!
+  createEmployeeTest(createEmployee: EmployeeTestDto!): EmployeeTest!
+  createSkillTest(createskilltest: SkillTestDto!): Skill!
+  createTag(createTag: TagDto!): Tag!
+  deleteEmployeeTest(id: String!): EmployeeTest!
+  deletePrismaRahul(id: String!): Boolean!
+  deleteSkillTest(id: String!): Skill!
+  deleteTag(id: String!): Tag!
+  updateEmployeeTest(id: String!, updateEmployee: EmployeeTestDto!): [EmployeeTest!]!
+  updatePrismaRahul(id: String!, updateData: RahulDetailDto!): Rahul!
+  updateSkillTest(id: String!, updateSkill: SkillTestDto!): Skill!
+  updateTag(id: String!, updateTag: TagDto!): Tag!
+}
+
+type Query {
+  getAllEmployeeTest(filter: FilterBySkill): [EmployeeTest!]!
+  getAllPrismaRahul: [Rahul!]!
+  getAllTags: [Tag!]!
+  getEmployeeTest(id: String!): EmployeeTest!
+  getEmployeeTestCount: Float!
+  getSkillTest(id: String!): Skill!
+  getTag(id: String!): Tag!
+  skillWithEmployeeCount: [Skill!]!
+  tagsWithEmployeeCount: [Tag!]!
+}
+
+type Rahul {
+  Address: String
+  CompanyName: String
+  District: String
+  Name: String
+  PhoneNumber: Float
+  id: String!
+  newStatus: String
+}
+
+input RahulDetailDto {
+  Address: String
+  CompanyName: String
+  District: String
+  Name: String
+  PhoneNumber: Float
+}
+
+type Skill {
+  Name: String
+  archived: Boolean!
+  count: Float
+  id: String!
+  tags: [Tag!]
+}
+
+input SkillTestDto {
+  Name: String
+  tagIds: [String!]
+}
+
+type Tag {
+  Name: String
+  archived: Boolean!
+  count: Float
+  id: String!
+}
+
+input TagDto {
+  Name: String
+}

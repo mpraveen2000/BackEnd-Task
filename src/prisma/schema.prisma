@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Ravath {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  Name        String?
+  PhoneNumber Int?      @unique(map: "mobile_1")
+  Address     String?
+  CompanyName String?
+  District    String?
+  archived    Boolean?
+  createdAt   DateTime? @default(now())
+  updatedAt   DateTime? @updatedAt
+}
+
+model SkillTest {
+  id             String         @id @default(auto()) @map("_id") @db.ObjectId
+  Name           String
+  archived       Boolean        @default(false)
+  tagIds         String[]       @db.ObjectId
+  tags           Tag[]          @relation(fields: [tagIds], references: [id])
+  createdAt      DateTime       @default(now()) @db.Date
+  updatedAt      DateTime       @updatedAt
+  EmployeeTest   EmployeeTest[] @relation(fields: [employeeTestId], references: [id])
+  employeeTestId String[]       @db.ObjectId
+}
+
+model Tag {
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  archived       Boolean       @default(false)
+  Name           String
+  createdAt      DateTime      @default(now()) @db.Date
+  updatedAt      DateTime      @updatedAt
+  skillTestId    String[]      @db.ObjectId
+  Skills         SkillTest[]   @relation(fields: [skillTestId], references: [id])
+  EmployeeTest   EmployeeTest? @relation(fields: [employeeTestId], references: [id])
+  employeeTestId String?       @db.ObjectId
+}
+
+model EmployeeTest {
+  id           String      @id @default(auto()) @map("_id") @db.ObjectId
+  Name         String?
+  Email        String?     @unique
+  Phone        String?
+  archived     Boolean     @default(false)
+  dob          DateTime?   @db.Date
+  doj          DateTime?   @db.Date
+  skills       SkillTest[] @relation(fields: [skillsTestId], references: [id])
+  skillsTestId String[]    @db.ObjectId
+  createdAt    DateTime    @default(now()) @db.Date
+  updatedAt    DateTime    @updatedAt
+  Tag          Tag[]
+}
