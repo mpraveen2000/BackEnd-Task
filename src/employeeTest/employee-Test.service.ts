@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { EmployeeTestDto } from './employee-Test.dto';
+import { EmployeeTestDto, FilterBySkill } from './employee-Test.dto';
 import { EmployeeTest, Prisma } from '@prisma/client';
 import { filter } from 'rxjs';
 import { Tag } from '../Tag/tag.model';
@@ -28,17 +28,17 @@ export class EmployeeTestService {
       },
     });
   }
-  async getAllEmployeeTest(filter): Promise<EmployeeTest[]> {
+  async getAllEmployeeTest(filter: FilterBySkill): Promise<EmployeeTest[]> {
     let filterQuery: Prisma.EmployeeTestWhereInput = {};
     if (filter?.skillId) {
       filterQuery = {
         ...filterQuery,
         skillsTestId: {
-          hasSome: filter?.skillsTestId,
+          hasSome: filter?.skillId,
         },
       };
     }
-    const allemployee = await this.prisma.employeeTest.findMany({
+    const allEmployee = await this.prisma.employeeTest.findMany({
       where: {
         archived: false,
       },
@@ -47,7 +47,7 @@ export class EmployeeTestService {
       },
       orderBy: [{ Name: 'asc' }],
     });
-    return allemployee;
+    return allEmployee;
   }
   async deleteEmployeeTest(id: string): Promise<EmployeeTest> {
     return await this.prisma.employeeTest.update({

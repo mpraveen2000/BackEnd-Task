@@ -4,14 +4,14 @@ import { SkillTestService } from './skills-test.service';
 import { SkillTestDto } from './skills-test.dto';
 
 @Resolver(() => Skill)
-export class SkilTestResolver {
+export class SkillTestResolver {
   constructor(private SkillTestService: SkillTestService) {}
 
   @Mutation(() => Skill)
   async createSkillTest(
-    @Args('createskilltest') createskilltest: SkillTestDto,
+    @Args('createSkillTest') createSkillTest: SkillTestDto,
   ): Promise<Skill> {
-    return await this.SkillTestService.createSkillTest(createskilltest);
+    return await this.SkillTestService.createSkillTest(createSkillTest);
   }
   @Query(() => Skill)
   async getSkillTest(@Args('id') id: string): Promise<Skill> {

@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { SkillTestService } from './skills-test.service';
-import { SkilTestResolver } from './skills-test.resolver';
+import { SkillTestResolver } from './skills-test.resolver';
 
 @Module({
-  providers: [SkilTestResolver, SkillTestService],
+  providers: [SkillTestResolver, SkillTestService],
 })
 export class SkillTestModule {}

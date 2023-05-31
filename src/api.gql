@@ -34,7 +34,7 @@ input FilterBySkill {
 type Mutation {
   createEmployeePrisma(createRahul: RahulDetailDto!): Rahul!
   createEmployeeTest(createEmployee: EmployeeTestDto!): EmployeeTest!
-  createSkillTest(createskilltest: SkillTestDto!): Skill!
+  createSkillTest(createSkillTest: SkillTestDto!): Skill!
   createTag(createTag: TagDto!): Tag!
   deleteEmployeeTest(id: String!): EmployeeTest!
   deletePrismaRahul(id: String!): Boolean!
