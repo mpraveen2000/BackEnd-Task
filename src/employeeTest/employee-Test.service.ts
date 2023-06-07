@@ -30,6 +30,7 @@ export class EmployeeTestService {
   }
   async getAllEmployeeTest(filter: FilterBySkill): Promise<EmployeeTest[]> {
     let filterQuery: Prisma.EmployeeTestWhereInput = {};
+
     if (filter?.skillId) {
       filterQuery = {
         ...filterQuery,
@@ -38,8 +39,10 @@ export class EmployeeTestService {
         },
       };
     }
+
     const allEmployee = await this.prisma.employeeTest.findMany({
       where: {
+        ...filterQuery,
         archived: false,
       },
       include: {
@@ -47,8 +50,10 @@ export class EmployeeTestService {
       },
       orderBy: [{ Name: 'asc' }],
     });
+
     return allEmployee;
   }
+
   async deleteEmployeeTest(id: string): Promise<EmployeeTest> {
     return await this.prisma.employeeTest.update({
       where: { id },

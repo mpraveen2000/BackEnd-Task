@@ -5,6 +5,9 @@ import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class SkillTestService {
+  findMany(arg0: { where: { archived: boolean }; include: { tags: boolean } }) {
+    throw new Error('Method not implemented.');
+  }
   constructor(private readonly prisma: PrismaService) {}
 
   async createSkillTest(data: SkillTestDto): Promise<Skill> {
@@ -45,6 +48,9 @@ export class SkillTestService {
       where: { id: id },
       data: {
         Name: data?.Name,
+        tagIds: {
+          set: data?.tagIds,
+        },
       },
     });
   }

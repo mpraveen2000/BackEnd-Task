@@ -5,17 +5,18 @@ import { SkillTestDto } from './skills-test.dto';
 
 @Resolver(() => Skill)
 export class SkillTestResolver {
-  constructor(private SkillTestService: SkillTestService) {}
+  constructor(private skillTestService: SkillTestService) {}
 
   @Mutation(() => Skill)
   async createSkillTest(
     @Args('createSkillTest') createSkillTest: SkillTestDto,
   ): Promise<Skill> {
-    return await this.SkillTestService.createSkillTest(createSkillTest);
+    return await this.skillTestService.createSkillTest(createSkillTest);
   }
+
   @Query(() => Skill)
   async getSkillTest(@Args('id') id: string): Promise<Skill> {
-    return await this.SkillTestService.getSkillTest(id);
+    return await this.skillTestService.getSkillTest(id);
   }
 
   @Mutation(() => Skill)
@@ -23,10 +24,16 @@ export class SkillTestResolver {
     @Args('updateSkill') updateTag: SkillTestDto,
     @Args('id') id: string,
   ): Promise<Skill> {
-    return await this.SkillTestService.updateSkillTest(updateTag, id);
+    return await this.skillTestService.updateSkillTest(updateTag, id);
   }
+
   @Mutation(() => Skill)
   async deleteSkillTest(@Args('id') id: string): Promise<Skill> {
-    return await this.SkillTestService.deleteSkillTest(id);
+    return await this.skillTestService.deleteSkillTest(id);
+  }
+
+  @Query(() => [Skill])
+  async getAllSkillTest(): Promise<Skill[]> {
+    return await this.skillTestService.getAllSkillTest();
   }
 }

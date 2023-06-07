@@ -40,7 +40,7 @@ type Mutation {
   deletePrismaRahul(id: String!): Boolean!
   deleteSkillTest(id: String!): Skill!
   deleteTag(id: String!): Tag!
-  updateEmployeeTest(id: String!, updateEmployee: EmployeeTestDto!): [EmployeeTest!]!
+  updateEmployeeTest(id: String!, updateEmployee: EmployeeTestDto!): EmployeeTest!
   updatePrismaRahul(id: String!, updateData: RahulDetailDto!): Rahul!
   updateSkillTest(id: String!, updateSkill: SkillTestDto!): Skill!
   updateTag(id: String!, updateTag: TagDto!): Tag!
@@ -49,6 +49,7 @@ type Mutation {
 type Query {
   getAllEmployeeTest(filter: FilterBySkill): [EmployeeTest!]!
   getAllPrismaRahul: [Rahul!]!
+  getAllSkillTest: [Skill!]!
   getAllTags: [Tag!]!
   getEmployeeTest(id: String!): EmployeeTest!
   getEmployeeTestCount: Float!

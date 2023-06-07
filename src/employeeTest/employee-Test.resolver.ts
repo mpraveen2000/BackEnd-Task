@@ -28,7 +28,7 @@ export class EmployeeTestResolver {
     return await this.employeeTestService.getEmployeeTest(id);
   }
 
-  @Mutation(() => [EmployeeTest])
+  @Mutation(() => EmployeeTest)
   async updateEmployeeTest(
     @Args('updateEmployee') updateEmployee: EmployeeTestDto,
     @Args('id') id: string,
@@ -43,6 +43,7 @@ export class EmployeeTestResolver {
   async getAllEmployeeTest(
     @Args('filter', { nullable: true }) filter: FilterBySkill,
   ): Promise<EmployeeTest[]> {
+    console.log(filter);
     return await this.employeeTestService.getAllEmployeeTest(filter);
   }
   @Mutation(() => EmployeeTest)
